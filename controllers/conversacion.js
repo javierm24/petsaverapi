@@ -38,11 +38,32 @@ router.put('/chat/:conversacionId', async (req, res) => {
     }
 })
 
-router.get('/chat/:chatid/mensaje', (req, res) => {
+router.get('/chat/:conversacionId/mensajes', async (req, res) => {
+    try {
+        let result = await conversacionModel.findById(req.params.conversacionId)
 
+        res.send(result)
+
+    } catch (error) {
+        res.status(500).json({
+            error: "Database error"
+        })
+    }
 })
 
-router.get('/chat/list/:userid', (req, res) => {
+router.get('/chat/list/:userid', async (req, res) => {
+    try {
+        let lista = await conversacionModel.find({ $or: [
+            { userID_1: req.params.userid },
+            { userID_2: req.params.userid }
+        ]})
+
+        res.send(lista)
+    } catch (error) {
+        res.status(500).json({
+            error: "Database error"
+        })
+    }
 
 })
 
