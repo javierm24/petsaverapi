@@ -38,7 +38,7 @@ router.put('/chat/:conversacionId', async (req, res) => {
     }
 })
 
-router.get('/chat/:conversacionId/mensajes', async (req, res) => {
+router.get('/chat/:conversacionId', async (req, res) => {
     try {
         let result = await conversacionModel.findById(req.params.conversacionId)
 
