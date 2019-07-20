@@ -5,11 +5,13 @@ const app = express();
 const bodyParser = require('body-parser')
 const animalsRouter = require("./controllers/animals");
 const userRouter = require("./controllers/user");
+const conversacionRouter = require("./controllers/conversacion");
 
 app.use(bodyParser.json());
 
 app.use('/', animalsRouter);
 app.use('/', userRouter);
+app.use('/', conversacionRouter);
 
 app.listen(3333, () => {
    console.log("3333");
