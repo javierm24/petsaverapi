@@ -12,7 +12,7 @@ router.post('/usuario/registro', (req, res) => {
                 contrasena: req.body.contrasena
             });
         user.save()
-        res.send("todo ok")
+        res.status(200).json(user);
     } catch (error) {
         res.status(500).json({
             error: "Database error"
@@ -37,7 +37,7 @@ router.post('/usuario/login', async (req, res) => {
                     })
                 } else {
                     if (comp) {
-                        res.status(200).json("todo ok");
+                        res.status(200).json(user);
                     } else {
                         res.status(401).json({
                             error: "No estas autorizado"

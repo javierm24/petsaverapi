@@ -11,7 +11,7 @@ router.post('/chat/conversacion', (req, res) => {
                 userID_2: req.body.userID_2
             });
         conversacion.save()
-        res.send("todo ok")
+        res.status(200).json("todo ok")
     } catch (error) {
         res.status(500).json({
             error: "Database error"

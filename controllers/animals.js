@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const animalModel = require("../models/animal-model");
+const mongoose = require("mongoose");
 
-router.post('/animales', (req, res) => {
+router.post('/animales', (req, res) => {    
     try {
         let animal = new animalModel(
             {
@@ -14,8 +15,9 @@ router.post('/animales', (req, res) => {
                 dueno: mongoose.Types.ObjectId(req.body.dueno)
             });
         animal.save()
-        res.send("todo ok")
+        res.status(200).json(animal)
     } catch (err) {
+        console.log(err);
         res.status(500).json({
             error: "Database error"
         })
@@ -40,6 +42,11 @@ router.delete('/animales/:id', async (req, res) => {
 
 router.get('/animales/:dueno', async (req, res) => {
     let result = await animalModel.find({ dueno: req.params.dueno })
+    res.send(result)
+})
+
+router.get('/animales', async (req, res) => {
+    let result = await animalModel.find({ })
     res.send(result)
 })
 

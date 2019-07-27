@@ -4,9 +4,9 @@ const animalSchema = new mongoose.Schema({
     imagen: String,
     tipo: String,
     nombre: String,
-    edad: Number,
+    edad: String,
     descripcion: String,
-    dueno: mongoose.Types.ObjectId
+    dueno: { type: mongoose.Schema.Types.ObjectId, ref: 'user' }
  });
  
  const animalModel = mongoose.model('animal', animalSchema);
