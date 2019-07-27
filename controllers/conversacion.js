@@ -8,10 +8,12 @@ router.post('/chat/conversacion', (req, res) => {
         let conversacion = new conversacionModel(
             {
                 userID_1: req.body.userID_1,
-                userID_2: req.body.userID_2
+                userID_2: req.body.userID_2,
+                nombreAnimal: req.body.nombreAnimal,
+                imagenAnimal: req.body.imagenAnimal
             });
         conversacion.save()
-        res.status(200).json("todo ok")
+        res.status(200).json(conversacion);
     } catch (error) {
         res.status(500).json({
             error: "Database error"
@@ -30,7 +32,7 @@ router.put('/chat/:conversacionId', async (req, res) => {
             $addToSet: { mensajes: mensaje }
         }, { new: true, useFindAndModify: false })
 
-        res.send(conversacion);
+        res.status(200).send(conversacion);
     } catch (error) {
         res.status(500).json({
             error: "Database error"
