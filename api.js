@@ -6,6 +6,9 @@ const bodyParser = require('body-parser')
 const animalsRouter = require("./controllers/animals");
 const userRouter = require("./controllers/user");
 const conversacionRouter = require("./controllers/conversacion");
+const cors = require('cors');
+
+app.use(cors());
 
 app.use(bodyParser.json());
 
